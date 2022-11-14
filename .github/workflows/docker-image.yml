@@ -1,23 +1,20 @@
-name: Docker Image CI
+name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+   branches: [ main ]
   pull_request:
-    branches: [ "main" ]
-
+    branches: [ main ]
+      
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Build and Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v5
-      with:
-        image: rajchaudhari/cicd-test
-        registry: docker.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+    - uses: actions/checkout@v1
+    - name: Build & Push Image
+      run: |
+        echo "${{ secrets.PASSWORD }}" | docker login -u "${{ secrets.USERNAME }}" --password-stdin
+        docker image build -t rajchaudhari/cicd-test:latest .
+        docker push rajchaudhari/cicd-test:latest
