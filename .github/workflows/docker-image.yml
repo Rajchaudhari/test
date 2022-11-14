@@ -16,7 +16,7 @@ jobs:
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
-        image: rajchaudhari/cicd-test:latest
+        image: rajchaudhari/cicd-test
         registry: docker.io
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
