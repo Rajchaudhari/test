@@ -18,5 +18,6 @@ jobs:
       with:
         image: rajchaudhari/cicd-test
         registry: docker.io
+        dockerfile: Dockerfile
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
